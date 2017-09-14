@@ -20,24 +20,12 @@ export class AppComponent {
   printing = false;
 
   addStudentEntry(): boolean {
-    this.printing = false;
-    
-    this.studentRecord = {
-      studNumber: this.studno,
-      studFirstName: this.studfname,
-      studLastName: this.studlname,
-      studProgram: this.studprog,
-      studYear: this.studyr
-    };
-
-    this.studentCollection.push(this.studentRecord);
-    this.clearValues();
-    console.log("asd");
     return true;
   }
 
   listStudents(): void{
     this.printing = true;
+    
   }
 
   clearValues(): void{
@@ -50,6 +38,21 @@ export class AppComponent {
 
   onSubmit(register){
     console.log(register);
+    this.printing = false;
+    
+    this.studentRecord = {
+      studNumber: register.value.studno,
+      studFirstName: register.value.studfname,
+      studLastName: register.value.studlname,
+      studProgram: register.value.studprog,
+      studYear: register.value.studyr
+    };
+    console.log(this.studentRecord);
+    this.studentCollection.push(this.studentRecord);
+    
+    register.reset();
+    this.listStudents();
+    
   }
 
 }
